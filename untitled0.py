@@ -5,6 +5,10 @@ Created on Mon Jan 17 16:12:27 2022
 @author: lisicky
 """
 
+def bla ():
+    pass
+
+
 class Person():
     def __init__(self, jmeno):
         self.jmeno = jmeno
