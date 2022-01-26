@@ -1,0 +1,1 @@
+Zde budou nahrávány rùzné learningy, které projdu bìhem uèení. Mnoho jsem jich zapomnìl uložit nebo jsou jinde, tak alespoò nìco.
