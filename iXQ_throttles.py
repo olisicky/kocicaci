@@ -19,6 +19,7 @@ class plot_results():
         return 0.0038 * AD_values - 3.0312
 
     def get_names(self, path):
+        """ Získá jména souborů ve složce. Prozatím pro .csv"""
         names = []
         for file in os.listdir(path):
             if file.endswith(".csv"):
