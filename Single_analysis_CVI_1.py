@@ -7,7 +7,7 @@ from matplotlib.widgets import CheckButtons
 import datetime
 import colorsys
 
-path = r"V:\01_Combustion_Private\01_Projects\IXQ 2_Rambler_Throttle_AOS\TEST\Testy\038-unique blade holder_proto\004 - CVI opening"
+path = r"V:\01_Combustion_Private\01_Projects\iXQ2_CVI_Throttle_ACV\04_TEST\iXQ CVI\TESTY\036-mikrotech TR_january\004 - opening"
 def open(name):
     """ Funkce pro otevření a načten dat, které chci analyzovat."""
     df = pd.read_csv(path + "\{}.csv".format(name), sep=",|;", header =None, engine="python")
@@ -188,7 +188,10 @@ def comparison(limits):
     plt.show()
 
 # ================================ Aplikace funkcí ================================
-throttle_name = "FMK_2151_2"   # zde zadej žádaný throttle
+
+throttle_name = "FMK_2205_291"   # zde zadej žádaný throttle
+print(open(throttle_name))
+
 hyst1, hyst2, hyst3= hysteresis(open(throttle_name))  # zde zadej žádaný throttle
 opening(open(throttle_name), limits, hyst1, hyst2, hyst3)
 increase(open(throttle_name))
