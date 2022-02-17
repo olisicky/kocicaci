@@ -67,7 +67,7 @@ class plot_results():
 
     def open_file(self, path, name):
         """ Funkce pro otevření a načten dat, které chci analyzovat."""
-        df = pd.read_csv(path + "\{}".format(name), sep="\s+|,|\t", header=None, engine="python")
+        df = pd.read_csv(path + "\{}".format(name), sep="\s+|,|\t|;", header=None, engine="python")
         df = df.rename(columns={df.columns[0]: 'X', df.columns[1]: 'Y'})
         return df[(df.T != 0).any()]   # Výstup pouze hodnoty, kde není 0, tj. ty, kde jsou zaznamenána data
 
@@ -120,7 +120,8 @@ class plot_results():
             all_throttles = self.get_names(path)
         else:
             all_throttles = []    # očekává se list, tak i když je jeden, tak jej dám do listu
-            all_throttles.append(throttle_name + ".csv")    # nevím proč zde musím mít to .csv :(
+            for item in throttle_name:
+                all_throttles.append(item + ".csv")    # nevím proč zde musím mít to .csv :(
 
         # Vytvoření listu, který obsahuje všechna požadovaná data jako DataFrame pro vykreslení
         for_analysis = []
@@ -148,7 +149,8 @@ class plot_results():
             all_throttles = self.get_names(path)
         else:
             all_throttles = []    # očekává se list, tak i když je jeden, tak jej dám do listu
-            all_throttles.append(throttle_name + ".csv")    # nevím proč zde musím mít to .csv :(
+            for item in throttle_name:
+                all_throttles.append(item + ".csv")    # nevím proč zde musím mít to .csv :(
 
         # Vytvoření listu, který obsahuje všechna požadovaná data jako DataFrame pro vykreslení
 
@@ -171,7 +173,8 @@ class plot_results():
             all_throttles = self.get_names(path)
         else:
             all_throttles = []
-            all_throttles.append(throttle_name + ".log")    # data z torque jsou asi primárně v .log
+            for item in throttle_name:
+                all_throttles.append(item + ".log")    # data z torque jsou asi primárně v .log
         
         for_analysis = []
         for item in all_throttles:
@@ -195,8 +198,9 @@ class plot_results():
         if throttle_name == "full":    # keyword pro vykreslení celku. Bude v seznamu případně
             all_throttles = self.get_names(path)
         else:
-            all_throttles = []    # očekává se list, tak i když je jeden, tak jej dám do listu
-            all_throttles.append(throttle_name + ".csv")    # nevím proč zde musím mít to .csv :(
+            all_throttles = []  # očekává se list, tak i když je jeden, tak jej dám do listu
+            for item in throttle_name:
+                all_throttles.append(item + ".csv")    # nevím proč zde musím mít to .csv :(
         if self.throttle == "RAMBLER":
             boundary = pd.DataFrame({"X": [100, 400], "low": [0.5, 0.5], "high": [1.5, 1.5]})
         elif self.throttle == "CVI":
@@ -215,9 +219,9 @@ class plot_results():
 
 
 
-x = plot_results("FMK_2205", "CVI")
+x = plot_results("FRAM_2207", "RAMBLER")
 
-opening_res = x.opening(r".\Opening_CVI", throttle_name = "full", limits = "current")
-increase = x.increase(r".\Opening_CVI", throttle_name = "full")
+opening_res = x.opening(r".\Opening_Rambler", throttle_name = ["FRAM_2207_378", "FRAM_2207_379"], limits = "current")
+increase = x.increase(r".\Opening_Rambler", throttle_name = ["FRAM_2207_378"])
 cap = x.capacity(r".\Capacity", throttle_name = "full", limits = "current")
-tor = x.torque(r".\Torque", throttle_name = "FRAM_2204_372")
+tor = x.torque(r".\Torque", throttle_name = ["FRAM_2207_376_0", "FRAM_2207_376_1"])
