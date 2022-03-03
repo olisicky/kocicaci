@@ -26,6 +26,12 @@ class plot_results():
             self.hyst1 = np.linspace(115, 136, 22)
             self.hyst2 = np.linspace(175, 196, 22)
             self.hyst3 = np.linspace(235, 254, 20)
+        elif self.throttle == "MK":
+            self.initial = np.linspace(0, 49, 50)
+            self.hyst1 = np.linspace(100, 121, 22)
+            self.hyst2 = np.linspace(220, 241, 22)
+            self.hyst3 = np.linspace(350, 371, 22)
+
         else:
             print("Wrong throttle type")
     def AD_flow(self, AD_values):
@@ -201,7 +207,7 @@ class plot_results():
             all_throttles = []  # očekává se list, tak i když je jeden, tak jej dám do listu
             for item in throttle_name:
                 all_throttles.append(item + ".csv")    # nevím proč zde musím mít to .csv :(
-        if self.throttle == "RAMBLER":
+        if self.throttle == "RAMBLER" or self.throttle == "MK":
             boundary = pd.DataFrame({"X": [100, 400], "low": [0.5, 0.5], "high": [1.5, 1.5]})
         elif self.throttle == "CVI":
             boundary = pd.DataFrame({"X": [300, 480], "low": [0.5, 0.5], "high": [1.5, 1.5]})
@@ -221,7 +227,7 @@ class plot_results():
 
 x = plot_results("FRAM_2207", "RAMBLER")
 
-opening_res = x.opening(r".\Opening_Rambler", throttle_name = ["FRAM_2207_378", "FRAM_2207_379"], limits = "current")
-increase = x.increase(r".\Opening_Rambler", throttle_name = ["FRAM_2207_378"])
-cap = x.capacity(r".\Capacity", throttle_name = "full", limits = "current")
-tor = x.torque(r".\Torque", throttle_name = ["FRAM_2207_376_0", "FRAM_2207_376_1"])
+opening_res = x.opening(r".\Opening_RAMBLER", throttle_name = ["FRAM_2207_377", "FRAM_2207_377_afterlife"], limits = "current")
+increase = x.increase(r".\Opening_RAMBLER", throttle_name = ["FRAM_2207_377", "FRAM_2207_377_afterlife"])
+#cap = x.capacity(r".\Capacity", throttle_name = "full", limits = "current")
+tor = x.torque(r".\Torque", throttle_name = ["FRAM_2207_377_0", "FRAM_2207_377_afterlife1"])
