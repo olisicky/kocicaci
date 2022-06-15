@@ -25,6 +25,10 @@ class Child(Person):
             print('Invalid age')
     def give_age(self):
         return print(f'You are {self._age} years old')
+    # Zkouška využití staticmethod. Výhoda je asi, že je to nějak spjato s tím objektem a nemusí to ležet mimo, takže je to "uspořádanější" ?
+    @staticmethod
+    def static():
+        print('Print something')
  
 if __name__ == '__main__':
     neco = Child(sys.argv[1], sys.argv[2], sys.argv[3])
@@ -33,3 +37,5 @@ if __name__ == '__main__':
     neco.give_age()
     neco.age = 25
     neco.give_age()
+    neco.static()
+    Child.static()    # Nemusím vytvořit objekt, abych využil tu metodu, která byla dekorována pomocí @staticmethod
