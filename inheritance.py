@@ -22,7 +22,7 @@ class Child(Person):
         if newage >0:
             self._age = newage
         else:
-            print('Invalid age')
+            raise ValueError('Age should be a positive value only.')
     def give_age(self):
         return print(f'You are {self._age} years old')
     # Zkouška využití staticmethod. Výhoda je asi, že je to nějak spjato s tím objektem a nemusí to ležet mimo, takže je to "uspořádanější" ?
@@ -35,7 +35,7 @@ if __name__ == '__main__':
     neco.give_name()
     neco.give_lastname()
     neco.give_age()
-    neco.age = 25
+    neco.age = -25
     neco.give_age()
     neco.static()
     Child.static()    # Nemusím vytvořit objekt, abych využil tu metodu, která byla dekorována pomocí @staticmethod
