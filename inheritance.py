@@ -1,7 +1,7 @@
 import sys
 
 class Person():
-    def __init__(self, name, lastname):
+    def __init__(self, name: str, lastname: str) -> None:
         self.name = name
         self.lastname = lastname
     def give_name(self):
@@ -11,23 +11,23 @@ class Person():
 
 class Child(Person):
     ''' Nová třída, která dědí vlastnosti ze třídy Person. Zde to je hlavně attribut name a lastname '''
-    def __init__(self, name, lastname, age):
+    def __init__(self, name: str, lastname: str, age: int) -> None:
         super().__init__(name, lastname)    # zde nesmí být self, protože dědím z jiné třídy! Navíc zde musím specifikovat, které attributy chci dědit. U metod to není třeba.
         self._age = age
     @property    # Tohle je getter pro třeba attribut, který by neměl být veřejný
     def age(self):
         return self._age
     @age.setter    # zde vytvořím setter (mohu jej tedy nastavit přes object.age = xx) + Navíc kontroluji správnost toho zadání
-    def age(self, newage):
+    def age(self, newage: int) -> None:
         if newage >0:
             self._age = newage
         else:
             raise ValueError('Age should be a positive value only.')
-    def give_age(self):
+    def give_age(self) -> None:
         return print(f'You are {self._age} years old')
     # Zkouška využití staticmethod. Výhoda je asi, že je to nějak spjato s tím objektem a nemusí to ležet mimo, takže je to "uspořádanější" ?
     @staticmethod
-    def static():
+    def static() -> None:
         print('Print something')
  
 if __name__ == '__main__':
@@ -35,7 +35,7 @@ if __name__ == '__main__':
     neco.give_name()
     neco.give_lastname()
     neco.give_age()
-    neco.age = -25
+    neco.age = int(sys.argv[4])
     neco.give_age()
     neco.static()
     Child.static()    # Nemusím vytvořit objekt, abych využil tu metodu, která byla dekorována pomocí @staticmethod
