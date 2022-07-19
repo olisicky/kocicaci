@@ -6,5 +6,5 @@ print('nečum, protože tohle je další zápis)
 teď byla udělána změna na mainu
 
 def function(a,b):
-    return a+b
+    return a*b
 
