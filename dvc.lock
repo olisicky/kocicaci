@@ -1,0 +1,16 @@
+schema: '2.0'
+stages:
+  write_to_file:
+    cmd: echo "nečum na mě" >> first_file.txt
+    deps:
+    - path: first_file.txt
+      md5: de9cce3eecb409f6692601d54037d661
+      size: 15
+  write_second:
+    cmd: echo "tohle je druhý vstup a přidal jsem jej ručně!" >> first_file.txt
+    deps:
+    - path: first_file.txt
+      md5: d993dbbc10c41a31ade8e26239dcd602
+      size: 65
+  print_something:
+    cmd: python script.py
